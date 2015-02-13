@@ -1,0 +1,841 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 10.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     31667,        832]
+NotebookOptionsPosition[     31177,        810]
+NotebookOutlinePosition[     31536,        826]
+CellTagsIndexPosition[     31493,        823]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"ClearAll", "[", "\"\<Global`*\>\"", "]"}], "\[IndentingNewLine]", 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"x", ",", "y"}], "}"}], "=", 
+    RowBox[{"Quiet", "[", 
+     RowBox[{"CoordinateTransform", "[", 
+      RowBox[{
+       RowBox[{"\"\<Cartesian\>\"", "\[Rule]", "\"\<Polar\>\""}], ",", 
+       RowBox[{"{", 
+        RowBox[{"r", ",", "theta"}], "}"}]}], "]"}], "]"}]}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"f1r", "[", 
+    RowBox[{"r_", ",", "theta_", ",", "mu_", ",", "Cs_"}], "]"}], " ", ":=", 
+   RowBox[{
+    RowBox[{"mu", "*", "r"}], "+", 
+    RowBox[{"r", "^", "3"}], "-", 
+    RowBox[{"r", "^", "5"}], "+", "Cs"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"f2r", "[", 
+    RowBox[{"r_", ",", "theta_", ",", "mu_", ",", "Cs_"}], "]"}], " ", ":=", 
+   "  ", "1"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"fun1", "=", 
+   RowBox[{
+    RowBox[{"mu", "*", "r"}], "+", 
+    RowBox[{"r", "^", "3"}], "-", 
+    RowBox[{"r", "^", "5"}], "+", "Cs"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"fun2", "=", 
+    RowBox[{"1", "+", "Cs"}]}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Clear", "[", "Cs", "]"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"omega", "=", "1"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"fp", "=", 
+   RowBox[{"Solve", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"fun1", "\[Equal]", "0"}], "}"}], ",", 
+     RowBox[{"{", "r", "}"}]}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"rstar", "[", 
+    RowBox[{"mu_", ",", "Cs_"}], "]"}], "=", 
+   RowBox[{"r", "/.", "fp"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"thetastar", "=", 
+   RowBox[{"theta", "/.", "fp"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"J", "=", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"D", "[", 
+        RowBox[{"fun1", ",", "r"}], "]"}], ",", 
+       RowBox[{"D", "[", 
+        RowBox[{"fun1", ",", "theta"}], "]"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"D", "[", 
+        RowBox[{"fun2", ",", "r"}], "]"}], ",", 
+       RowBox[{"D", "[", 
+        RowBox[{"fun2", ",", "theta"}], "]"}]}], "}"}]}], "}"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"trj", "=", 
+   RowBox[{"Tr", "[", "J", "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"detj", "=", 
+   RowBox[{"Det", "[", "J", "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"trj0", "=", 
+   RowBox[{
+    RowBox[{"trj", "/.", 
+     RowBox[{"x", "\[Rule]", "xstar"}]}], "/.", 
+    RowBox[{"y", "\[Rule]", "ystar"}]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"detj0", "=", 
+   RowBox[{
+    RowBox[{"detj", "/.", 
+     RowBox[{"x", "\[Rule]", "xstar"}]}], "/.", 
+    RowBox[{"y", "\[Rule]", "ystar"}]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"eval", "=", 
+   RowBox[{"Eigenvalues", "[", "J", "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"eval0", "=", 
+    RowBox[{
+     RowBox[{"eval", "/.", 
+      RowBox[{"x", "\[Rule]", "xstar"}]}], "/.", 
+     RowBox[{"y", "\[Rule]", "ystar"}]}]}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Clear", "[", 
+   RowBox[{"Cs", ",", "mu"}], "]"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"Show", "[", 
+    RowBox[{
+     RowBox[{"Plot", "[", 
+      RowBox[{
+       RowBox[{"rstar", "[", 
+        RowBox[{"mu", ",", "Cs"}], "]"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"mu", ",", 
+         RowBox[{"-", "3"}], ",", "3"}], "}"}]}], "]"}], ",", 
+     RowBox[{"StreamPlot", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"0", ",", 
+         RowBox[{"f1r", "[", 
+          RowBox[{"r", ",", "theta", ",", "mu", ",", "Cs"}], "]"}]}], "}"}], 
+       ",", 
+       RowBox[{"{", 
+        RowBox[{"mu", ",", 
+         RowBox[{"-", "3"}], ",", "3"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"r", ",", 
+         RowBox[{"-", "2"}], ",", "2"}], "}"}]}], "]"}]}], "]"}], ",", 
+   RowBox[{"Row", "[", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"Control", "[", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"Cs", ",", "0", ",", "\"\<C\>\""}], "}"}], ",", 
+         RowBox[{"-", "0.5"}], ",", "0.5", ",", 
+         RowBox[{
+          RowBox[{"Slider", "[", 
+           RowBox[{"##", ",", 
+            RowBox[{"Appearance", "\[Rule]", "\"\<Labeled\>\""}]}], "]"}], 
+          "&"}]}], "}"}], "]"}], ",", 
+      RowBox[{"Control", "[", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"Cs", ",", "0", ",", "\"\<C\>\""}], "}"}], ",", 
+         RowBox[{"-", "0.5"}], ",", "2", ",", 
+         RowBox[{
+          RowBox[{"Animator", "[", 
+           RowBox[{"##", ",", 
+            RowBox[{"AnimationRunning", "\[Rule]", "False"}], ",", 
+            RowBox[{"AppearanceElements", "\[Rule]", 
+             RowBox[{"{", 
+              RowBox[{
+              "\"\<StepLeftButton\>\"", ",", "\"\<StepRightButton\>\"", ",", 
+               "\"\<PlayPauseButton\>\"", ",", "\"\<FasterSlowerButtons\>\"", 
+               ",", "\"\<DirectionButton\>\""}], "}"}]}]}], "]"}], "&"}]}], 
+        "}"}], "]"}]}], "}"}], "]"}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.6315393456750298`*^9, 3.631539425193652*^9}, {
+   3.631539476930039*^9, 3.631539691088587*^9}, {3.6315398420037823`*^9, 
+   3.631539856741234*^9}, {3.631539912991152*^9, 3.6315399658280354`*^9}, {
+   3.63154016521174*^9, 3.631540209954042*^9}, {3.6315402566971703`*^9, 
+   3.631540304908001*^9}, {3.6315403814732*^9, 3.631540416752448*^9}, {
+   3.631541119474164*^9, 3.631541122087964*^9}, {3.631541427366562*^9, 
+   3.63154144848874*^9}, {3.631541479838202*^9, 3.6315414818936377`*^9}, {
+   3.631544223459425*^9, 3.6315442500495768`*^9}, {3.631555472220202*^9, 
+   3.631555472618025*^9}, {3.631555508843609*^9, 3.631555509001957*^9}, {
+   3.63155570340281*^9, 3.631555705480527*^9}, {3.63155583187893*^9, 
+   3.631555832088304*^9}, 3.631559004251334*^9}],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`Cs$$ = 0, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`Cs$$], 0, "C"}, -0.5, 0.5, Slider[
+       SlotSequence[1], Appearance -> "Labeled"]& }, {{
+       Hold[$CellContext`Cs$$], 0, "C"}, -0.5, 2, Animator[
+       SlotSequence[1], AnimationRunning -> False, 
+       AppearanceElements -> {
+        "StepLeftButton", "StepRightButton", "PlayPauseButton", 
+         "FasterSlowerButtons", "DirectionButton"}]& }, {
+      Hold[
+       Row[{
+         Manipulate`Place[1], 
+         Manipulate`Place[2]}]], Manipulate`Dump`ThisIsNotAControl}}, 
+    Typeset`size$$ = {360., {109., 114.}}, Typeset`update$$ = 0, 
+    Typeset`initDone$$, Typeset`skipInitDone$$ = 
+    True, $CellContext`Cs$2579$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     2, StandardForm, "Variables" :> {$CellContext`Cs$$ = 0}, 
+      "ControllerVariables" :> {
+        Hold[$CellContext`Cs$$, $CellContext`Cs$2579$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> Show[
+        Plot[
+         $CellContext`rstar[$CellContext`mu, $CellContext`Cs$$], \
+{$CellContext`mu, -3, 3}], 
+        StreamPlot[{0, 
+          $CellContext`f1r[$CellContext`r, $CellContext`theta, \
+$CellContext`mu, $CellContext`Cs$$]}, {$CellContext`mu, -3, 
+          3}, {$CellContext`r, -2, 2}]], 
+      "Specifications" :> {{{$CellContext`Cs$$, 0, "C"}, -0.5, 0.5, Slider[
+          SlotSequence[1], Appearance -> "Labeled"]& , ControlPlacement -> 
+         1}, {{$CellContext`Cs$$, 0, "C"}, -0.5, 2, Animator[
+          SlotSequence[1], AnimationRunning -> False, 
+          AppearanceElements -> {
+           "StepLeftButton", "StepRightButton", "PlayPauseButton", 
+            "FasterSlowerButtons", "DirectionButton"}]& , ControlPlacement -> 
+         2}, 
+        Row[{
+          Manipulate`Place[1], 
+          Manipulate`Place[2]}]}, "Options" :> {}, "DefaultOptions" :> {}],
+     ImageSizeCache->{418., {154., 159.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{3.631544251144814*^9, 3.631555057822619*^9, 
+  3.631555476318215*^9, 3.631555510577097*^9, 3.631555706161685*^9, 
+  3.631555833484109*^9, 3.631558990279529*^9}]
+}, Open  ]],
+
+Cell[BoxData[""], "Input",
+ CellChangeTimes->{{3.6315396714995937`*^9, 3.6315396752490387`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{"ClearAll", "[", "\"\<Global`*\>\"", "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"x", "=", "x"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"y", "=", "y"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"fun1", "=", 
+   RowBox[{
+    RowBox[{"mu", "*", "x"}], "-", 
+    RowBox[{"omega", "*", "y"}], "+", 
+    RowBox[{"x", "*", 
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{"x", "^", "2"}], "+", 
+       RowBox[{"y", "^", "2"}]}], ")"}]}], "-", 
+    RowBox[{"x", "*", 
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"x", "^", "2"}], "+", 
+        RowBox[{"y", "^", "2"}]}], ")"}], "^", "2"}]}], "+", "Cs"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"fun2", "=", " ", 
+   RowBox[{
+    RowBox[{"omega", "*", "x"}], "+", 
+    RowBox[{"mu", "*", "y"}], "+", 
+    RowBox[{"y", "*", 
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{"y", "^", "2"}], "+", 
+       RowBox[{"x", "^", "2"}]}], ")"}]}], "-", 
+    RowBox[{"y", "*", 
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"x", "^", "2"}], "+", 
+        RowBox[{"y", "^", "2"}]}], ")"}], "^", "2"}]}], "+", "Cs"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"f1", "[", 
+    RowBox[{"x_", ",", "y_", ",", "mu_", ",", "Cs_"}], "]"}], " ", ":=", " ", 
+   
+   RowBox[{
+    RowBox[{"mu", "*", "x"}], "-", 
+    RowBox[{"omega", "*", "y"}], "+", 
+    RowBox[{"x", "*", 
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{"x", "^", "2"}], "+", 
+       RowBox[{"y", "^", "2"}]}], ")"}]}], "-", 
+    RowBox[{"x", "*", 
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"x", "^", "2"}], "+", 
+        RowBox[{"y", "^", "2"}]}], ")"}], "^", "2"}]}], "+", "Cs"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"f2", "[", 
+     RowBox[{"x_", ",", "y_", ",", "mu_", ",", "Cs_"}], "]"}], " ", ":=", 
+    "  ", 
+    RowBox[{
+     RowBox[{"omega", "*", "x"}], "+", 
+     RowBox[{"mu", "*", "y"}], "+", 
+     RowBox[{"y", "*", 
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"y", "^", "2"}], "+", 
+        RowBox[{"x", "^", "2"}]}], ")"}]}], "-", 
+     RowBox[{"y", "*", 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"x", "^", "2"}], "+", 
+         RowBox[{"y", "^", "2"}]}], ")"}], "^", "2"}]}], "+", "Cs"}]}], ";"}],
+   "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Clear", "[", "Cs", "]"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"omega", "=", "1"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"fp", "=", 
+   RowBox[{"Solve", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"fun1", "\[Equal]", "0"}], ",", 
+       RowBox[{"fun2", "\[Equal]", "0"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"x", ",", "y"}], "}"}]}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"xstar", "=", 
+   RowBox[{"x", "/.", 
+    RowBox[{"First", "[", "fp", "]"}]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"ystar", "=", 
+   RowBox[{"y", "/.", 
+    RowBox[{"First", "[", "fp", "]"}]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"J", "=", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"D", "[", 
+        RowBox[{"fun1", ",", "x"}], "]"}], ",", 
+       RowBox[{"D", "[", 
+        RowBox[{"fun1", ",", "y"}], "]"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"D", "[", 
+        RowBox[{"fun2", ",", "x"}], "]"}], ",", 
+       RowBox[{"D", "[", 
+        RowBox[{"fun2", ",", "y"}], "]"}]}], "}"}]}], "}"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"trj", "=", 
+   RowBox[{"Tr", "[", "J", "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"detj", "=", 
+   RowBox[{"Det", "[", "J", "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"trj0", "=", 
+   RowBox[{
+    RowBox[{"trj", "/.", 
+     RowBox[{"x", "\[Rule]", "xstar"}]}], "/.", 
+    RowBox[{"y", "\[Rule]", "ystar"}]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"detj0", "=", 
+   RowBox[{
+    RowBox[{"detj", "/.", 
+     RowBox[{"x", "\[Rule]", "xstar"}]}], "/.", 
+    RowBox[{"y", "\[Rule]", "ystar"}]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"eval", "=", 
+   RowBox[{"Eigenvalues", "[", "J", "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"eval0", "=", 
+    RowBox[{
+     RowBox[{"eval", "/.", 
+      RowBox[{"x", "\[Rule]", "xstar"}]}], "/.", 
+     RowBox[{"y", "\[Rule]", "ystar"}]}]}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Clear", "[", "y", "]"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"Clear", "[", 
+    RowBox[{"mu", ",", "Cs"}], "]"}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"Show", "[", 
+    RowBox[{
+     RowBox[{"StreamPlot", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"f1", "[", 
+          RowBox[{"x", ",", "y", ",", "mu", ",", "Cs"}], "]"}], ",", 
+         RowBox[{"f2", "[", 
+          RowBox[{"x", ",", "y", ",", "mu", ",", "Cs"}], "]"}]}], "}"}], ",", 
+       
+       RowBox[{"{", 
+        RowBox[{"x", ",", 
+         RowBox[{"-", "2"}], ",", "2"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"y", ",", 
+         RowBox[{"-", "2"}], ",", "2"}], "}"}]}], "]"}], ",", 
+     RowBox[{"ParametricPlot", "[", 
+      RowBox[{
+       RowBox[{"Evaluate", "[", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"x", "[", "t", "]"}], ",", 
+           RowBox[{"y", "[", "t", "]"}]}], "}"}], "/.", 
+         RowBox[{"NDSolve", "[", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{
+              RowBox[{
+               RowBox[{"x", "'"}], "[", "t", "]"}], "\[Equal]", " ", 
+              RowBox[{
+               RowBox[{"mu", "*", 
+                RowBox[{"x", "[", "t", "]"}]}], "-", 
+               RowBox[{"omega", "*", 
+                RowBox[{"y", "[", "t", "]"}]}], "+", 
+               RowBox[{
+                RowBox[{"x", "[", "t", "]"}], "*", 
+                RowBox[{"(", 
+                 RowBox[{
+                  RowBox[{
+                   RowBox[{"x", "[", "t", "]"}], "^", "2"}], "+", 
+                  RowBox[{
+                   RowBox[{"y", "[", "t", "]"}], "^", "2"}]}], ")"}]}], "-", 
+               RowBox[{
+                RowBox[{"x", "[", "t", "]"}], "*", 
+                RowBox[{
+                 RowBox[{"(", 
+                  RowBox[{
+                   RowBox[{
+                    RowBox[{"x", "[", "t", "]"}], "^", "2"}], "+", 
+                   RowBox[{
+                    RowBox[{"y", "[", "t", "]"}], "^", "2"}]}], ")"}], "^", 
+                 "2"}]}], "+", "Cs"}]}], ",", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"y", "'"}], "[", "t", "]"}], "\[Equal]", "  ", 
+              RowBox[{
+               RowBox[{"omega", "*", 
+                RowBox[{"x", "[", "t", "]"}]}], "+", 
+               RowBox[{"mu", "*", 
+                RowBox[{"y", "[", "t", "]"}]}], "+", 
+               RowBox[{
+                RowBox[{"y", "[", "t", "]"}], "*", 
+                RowBox[{"(", 
+                 RowBox[{
+                  RowBox[{
+                   RowBox[{"y", "[", "t", "]"}], "^", "2"}], "+", 
+                  RowBox[{
+                   RowBox[{"x", "[", "t", "]"}], "^", "2"}]}], ")"}]}], "-", 
+               RowBox[{
+                RowBox[{"y", "[", "t", "]"}], "*", 
+                RowBox[{
+                 RowBox[{"(", 
+                  RowBox[{
+                   RowBox[{
+                    RowBox[{"y", "[", "t", "]"}], "^", "2"}], "+", 
+                   RowBox[{
+                    RowBox[{"x", "[", "t", "]"}], "^", "2"}]}], ")"}], "^", 
+                 "2"}]}], "+", "Cs"}]}], ",", 
+             RowBox[{
+              RowBox[{"x", "[", "0", "]"}], "\[Equal]", "x0"}], ",", 
+             RowBox[{
+              RowBox[{"y", "[", "0", "]"}], "\[Equal]", "y0"}]}], "}"}], ",", 
+           
+           RowBox[{"{", 
+            RowBox[{"x", ",", "y"}], "}"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"t", ",", "0", ",", "100"}], "}"}]}], "]"}]}], "]"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"t", ",", "0", ",", "100"}], "}"}], ",", 
+       RowBox[{"PlotStyle", "\[Rule]", 
+        RowBox[{"{", 
+         RowBox[{"Orange", ",", "Thick"}], "}"}]}]}], "]"}]}], "]"}], ",", 
+   RowBox[{"Row", "[", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"Control", "[", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"Cs", ",", "0", ",", "\"\<C\>\""}], "}"}], ",", 
+         RowBox[{"-", "2"}], ",", "2", ",", 
+         RowBox[{
+          RowBox[{"Slider", "[", 
+           RowBox[{"##", ",", 
+            RowBox[{"Appearance", "\[Rule]", "\"\<Labeled\>\""}]}], "]"}], 
+          "&"}]}], "}"}], "]"}], ",", 
+      RowBox[{"Control", "[", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"Cs", ",", "0", ",", "\"\<C\>\""}], "}"}], ",", 
+         RowBox[{"-", "2"}], ",", "2", ",", 
+         RowBox[{
+          RowBox[{"Animator", "[", 
+           RowBox[{"##", ",", 
+            RowBox[{"AnimationRunning", "\[Rule]", "False"}], ",", 
+            RowBox[{"AppearanceElements", "\[Rule]", 
+             RowBox[{"{", 
+              RowBox[{
+              "\"\<StepLeftButton\>\"", ",", "\"\<StepRightButton\>\"", ",", 
+               "\"\<PlayPauseButton\>\"", ",", "\"\<FasterSlowerButtons\>\"", 
+               ",", "\"\<DirectionButton\>\""}], "}"}]}]}], "]"}], "&"}]}], 
+        "}"}], "]"}]}], "}"}], "]"}], ",", 
+   RowBox[{"Row", "[", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"Control", "[", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"x0", ",", "0.1", ",", "\"\<x0\>\""}], "}"}], ",", 
+         RowBox[{"-", "2"}], ",", "2", ",", 
+         RowBox[{
+          RowBox[{"Slider", "[", 
+           RowBox[{"##", ",", 
+            RowBox[{"Appearance", "\[Rule]", "\"\<Labeled\>\""}]}], "]"}], 
+          "&"}]}], "}"}], "]"}], ",", 
+      RowBox[{"Control", "[", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"x0", ",", "0.1", ",", "\"\<x0\>\""}], "}"}], ",", 
+         RowBox[{"-", "2"}], ",", "2", ",", 
+         RowBox[{
+          RowBox[{"Animator", "[", 
+           RowBox[{"##", ",", 
+            RowBox[{"AnimationRunning", "\[Rule]", "False"}], ",", 
+            RowBox[{"AppearanceElements", "\[Rule]", 
+             RowBox[{"{", 
+              RowBox[{
+              "\"\<StepLeftButton\>\"", ",", "\"\<StepRightButton\>\"", ",", 
+               "\"\<PlayPauseButton\>\"", ",", "\"\<FasterSlowerButtons\>\"", 
+               ",", "\"\<DirectionButton\>\""}], "}"}]}]}], "]"}], "&"}]}], 
+        "}"}], "]"}]}], "}"}], "]"}], ",", 
+   RowBox[{"Row", "[", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"Control", "[", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"y0", ",", "0.1", ",", "\"\<y0\>\""}], "}"}], ",", 
+         RowBox[{"-", "2"}], ",", "2", ",", 
+         RowBox[{
+          RowBox[{"Slider", "[", 
+           RowBox[{"##", ",", 
+            RowBox[{"Appearance", "\[Rule]", "\"\<Labeled\>\""}]}], "]"}], 
+          "&"}]}], "}"}], "]"}], ",", 
+      RowBox[{"Control", "[", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"y0", ",", "0.1", ",", "\"\<y0\>\""}], "}"}], ",", 
+         RowBox[{"-", "2"}], ",", "2", ",", 
+         RowBox[{
+          RowBox[{"Animator", "[", 
+           RowBox[{"##", ",", 
+            RowBox[{"AnimationRunning", "\[Rule]", "False"}], ",", 
+            RowBox[{"AppearanceElements", "\[Rule]", 
+             RowBox[{"{", 
+              RowBox[{
+              "\"\<StepLeftButton\>\"", ",", "\"\<StepRightButton\>\"", ",", 
+               "\"\<PlayPauseButton\>\"", ",", "\"\<FasterSlowerButtons\>\"", 
+               ",", "\"\<DirectionButton\>\""}], "}"}]}]}], "]"}], "&"}]}], 
+        "}"}], "]"}]}], "}"}], "]"}], ",", 
+   RowBox[{"Row", "[", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"Control", "[", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"mu", ",", "0", ",", "\"\<mu\>\""}], "}"}], ",", 
+         RowBox[{"-", "2"}], ",", "2", ",", 
+         RowBox[{
+          RowBox[{"Slider", "[", 
+           RowBox[{"##", ",", 
+            RowBox[{"Appearance", "\[Rule]", "\"\<Labeled\>\""}]}], "]"}], 
+          "&"}]}], "}"}], "]"}], ",", 
+      RowBox[{"Control", "[", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"mu", ",", "0", ",", "\"\<mu\>\""}], "}"}], ",", 
+         RowBox[{"-", "2"}], ",", "2", ",", 
+         RowBox[{
+          RowBox[{"Animator", "[", 
+           RowBox[{"##", ",", 
+            RowBox[{"AnimationRunning", "\[Rule]", "False"}], ",", 
+            RowBox[{"AppearanceElements", "\[Rule]", 
+             RowBox[{"{", 
+              RowBox[{
+              "\"\<StepLeftButton\>\"", ",", "\"\<StepRightButton\>\"", ",", 
+               "\"\<PlayPauseButton\>\"", ",", "\"\<FasterSlowerButtons\>\"", 
+               ",", "\"\<DirectionButton\>\""}], "}"}]}]}], "]"}], "&"}]}], 
+        "}"}], "]"}]}], "}"}], "]"}]}], 
+  "]"}], "\[IndentingNewLine]"}], "Input",
+ CellChangeTimes->{{3.631540376296811*^9, 3.6315403775940447`*^9}, {
+  3.63154043027175*^9, 3.631540430679908*^9}, {3.6315552765187073`*^9, 
+  3.63155527939697*^9}, {3.6315660444048357`*^9, 3.6315660648551283`*^9}, {
+  3.631566106873746*^9, 3.631566146954301*^9}}],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`Cs$$ = 0., $CellContext`mu$$ = 
+    0.6000000000000001, $CellContext`x0$$ = 
+    0.33999999999999986`, $CellContext`y0$$ = 0.1, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`Cs$$], 0, "C"}, -2, 2, Slider[
+       SlotSequence[1], Appearance -> "Labeled"]& }, {{
+       Hold[$CellContext`Cs$$], 0, "C"}, -2, 2, Animator[
+       SlotSequence[1], AnimationRunning -> False, 
+       AppearanceElements -> {
+        "StepLeftButton", "StepRightButton", "PlayPauseButton", 
+         "FasterSlowerButtons", "DirectionButton"}]& }, {
+      Hold[
+       Row[{
+         Manipulate`Place[1], 
+         Manipulate`Place[2]}]], Manipulate`Dump`ThisIsNotAControl}, {{
+       Hold[$CellContext`x0$$], 0.1, "x0"}, -2, 2, Slider[
+       SlotSequence[1], Appearance -> "Labeled"]& }, {{
+       Hold[$CellContext`x0$$], 0.1, "x0"}, -2, 2, Animator[
+       SlotSequence[1], AnimationRunning -> False, 
+       AppearanceElements -> {
+        "StepLeftButton", "StepRightButton", "PlayPauseButton", 
+         "FasterSlowerButtons", "DirectionButton"}]& }, {
+      Hold[
+       Row[{
+         Manipulate`Place[3], 
+         Manipulate`Place[4]}]], Manipulate`Dump`ThisIsNotAControl}, {{
+       Hold[$CellContext`y0$$], 0.1, "y0"}, -2, 2, Slider[
+       SlotSequence[1], Appearance -> "Labeled"]& }, {{
+       Hold[$CellContext`y0$$], 0.1, "y0"}, -2, 2, Animator[
+       SlotSequence[1], AnimationRunning -> False, 
+       AppearanceElements -> {
+        "StepLeftButton", "StepRightButton", "PlayPauseButton", 
+         "FasterSlowerButtons", "DirectionButton"}]& }, {
+      Hold[
+       Row[{
+         Manipulate`Place[5], 
+         Manipulate`Place[6]}]], Manipulate`Dump`ThisIsNotAControl}, {{
+       Hold[$CellContext`mu$$], 0, "mu"}, -2, 2, Slider[
+       SlotSequence[1], Appearance -> "Labeled"]& }, {{
+       Hold[$CellContext`mu$$], 0, "mu"}, -2, 2, Animator[
+       SlotSequence[1], AnimationRunning -> False, 
+       AppearanceElements -> {
+        "StepLeftButton", "StepRightButton", "PlayPauseButton", 
+         "FasterSlowerButtons", "DirectionButton"}]& }, {
+      Hold[
+       Row[{
+         Manipulate`Place[7], 
+         Manipulate`Place[8]}]], Manipulate`Dump`ThisIsNotAControl}}, 
+    Typeset`size$$ = {360., {178., 183.}}, Typeset`update$$ = 0, 
+    Typeset`initDone$$, Typeset`skipInitDone$$ = 
+    True, $CellContext`Cs$16272$$ = 0, $CellContext`x0$16273$$ = 
+    0, $CellContext`y0$16274$$ = 0, $CellContext`mu$16275$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     2, StandardForm, 
+      "Variables" :> {$CellContext`Cs$$ = 0, $CellContext`mu$$ = 
+        0, $CellContext`x0$$ = 0.1, $CellContext`y0$$ = 0.1}, 
+      "ControllerVariables" :> {
+        Hold[$CellContext`Cs$$, $CellContext`Cs$16272$$, 0], 
+        Hold[$CellContext`x0$$, $CellContext`x0$16273$$, 0], 
+        Hold[$CellContext`y0$$, $CellContext`y0$16274$$, 0], 
+        Hold[$CellContext`mu$$, $CellContext`mu$16275$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> Show[
+        StreamPlot[{
+          $CellContext`f1[$CellContext`x, $CellContext`y, $CellContext`mu$$, \
+$CellContext`Cs$$], 
+          $CellContext`f2[$CellContext`x, $CellContext`y, $CellContext`mu$$, \
+$CellContext`Cs$$]}, {$CellContext`x, -2, 2}, {$CellContext`y, -2, 2}], 
+        ParametricPlot[
+         Evaluate[
+          ReplaceAll[{
+            $CellContext`x[$CellContext`t], 
+            $CellContext`y[$CellContext`t]}, 
+           
+           NDSolve[{
+            Derivative[
+              1][$CellContext`x][$CellContext`t] == $CellContext`mu$$ \
+$CellContext`x[$CellContext`t] - $CellContext`omega \
+$CellContext`y[$CellContext`t] + $CellContext`x[$CellContext`t] \
+($CellContext`x[$CellContext`t]^2 + $CellContext`y[$CellContext`t]^2) - \
+$CellContext`x[$CellContext`t] ($CellContext`x[$CellContext`t]^2 + \
+$CellContext`y[$CellContext`t]^2)^2 + $CellContext`Cs$$, 
+             Derivative[
+              1][$CellContext`y][$CellContext`t] == $CellContext`omega \
+$CellContext`x[$CellContext`t] + $CellContext`mu$$ \
+$CellContext`y[$CellContext`t] + $CellContext`y[$CellContext`t] \
+($CellContext`y[$CellContext`t]^2 + $CellContext`x[$CellContext`t]^2) - \
+$CellContext`y[$CellContext`t] ($CellContext`y[$CellContext`t]^2 + \
+$CellContext`x[$CellContext`t]^2)^2 + $CellContext`Cs$$, $CellContext`x[
+              0] == $CellContext`x0$$, $CellContext`y[
+              0] == $CellContext`y0$$}, {$CellContext`x, $CellContext`y}, \
+{$CellContext`t, 0, 100}]]], {$CellContext`t, 0, 100}, 
+         PlotStyle -> {Orange, Thick}]], 
+      "Specifications" :> {{{$CellContext`Cs$$, 0, "C"}, -2, 2, Slider[
+          SlotSequence[1], Appearance -> "Labeled"]& , ControlPlacement -> 
+         1}, {{$CellContext`Cs$$, 0, "C"}, -2, 2, Animator[
+          SlotSequence[1], AnimationRunning -> False, 
+          AppearanceElements -> {
+           "StepLeftButton", "StepRightButton", "PlayPauseButton", 
+            "FasterSlowerButtons", "DirectionButton"}]& , ControlPlacement -> 
+         2}, 
+        Row[{
+          Manipulate`Place[1], 
+          Manipulate`Place[2]}], {{$CellContext`x0$$, 0.1, "x0"}, -2, 2, 
+         Slider[
+          SlotSequence[1], Appearance -> "Labeled"]& , ControlPlacement -> 
+         3}, {{$CellContext`x0$$, 0.1, "x0"}, -2, 2, Animator[
+          SlotSequence[1], AnimationRunning -> False, 
+          AppearanceElements -> {
+           "StepLeftButton", "StepRightButton", "PlayPauseButton", 
+            "FasterSlowerButtons", "DirectionButton"}]& , ControlPlacement -> 
+         4}, 
+        Row[{
+          Manipulate`Place[3], 
+          Manipulate`Place[4]}], {{$CellContext`y0$$, 0.1, "y0"}, -2, 2, 
+         Slider[
+          SlotSequence[1], Appearance -> "Labeled"]& , ControlPlacement -> 
+         5}, {{$CellContext`y0$$, 0.1, "y0"}, -2, 2, Animator[
+          SlotSequence[1], AnimationRunning -> False, 
+          AppearanceElements -> {
+           "StepLeftButton", "StepRightButton", "PlayPauseButton", 
+            "FasterSlowerButtons", "DirectionButton"}]& , ControlPlacement -> 
+         6}, 
+        Row[{
+          Manipulate`Place[5], 
+          Manipulate`Place[6]}], {{$CellContext`mu$$, 0, "mu"}, -2, 2, Slider[
+         
+          SlotSequence[1], Appearance -> "Labeled"]& , ControlPlacement -> 
+         7}, {{$CellContext`mu$$, 0, "mu"}, -2, 2, Animator[
+          SlotSequence[1], AnimationRunning -> False, 
+          AppearanceElements -> {
+           "StepLeftButton", "StepRightButton", "PlayPauseButton", 
+            "FasterSlowerButtons", "DirectionButton"}]& , ControlPlacement -> 
+         8}, 
+        Row[{
+          Manipulate`Place[7], 
+          Manipulate`Place[8]}]}, "Options" :> {}, "DefaultOptions" :> {}],
+     ImageSizeCache->{434., {268., 273.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{3.631540431819643*^9, 3.631541583551341*^9, 
+  3.631555061631596*^9, 3.6315552800932426`*^9, 3.6315660901208963`*^9, 
+  3.631566147368353*^9}]
+}, Open  ]]
+},
+WindowSize->{808, 906},
+WindowMargins->{{143, Automatic}, {Automatic, 38}},
+FrontEndVersion->"10.0 for Mac OS X x86 (32-bit, 64-bit Kernel) (September 9, \
+2014)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 6240, 173, 539, "Input"],
+Cell[6823, 197, 2931, 61, 330, "Output"]
+}, Open  ]],
+Cell[9769, 261, 96, 1, 28, "Input"],
+Cell[CellGroupData[{
+Cell[9890, 266, 13539, 381, 930, "Input"],
+Cell[23432, 649, 7729, 158, 558, "Output"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
